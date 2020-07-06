@@ -49,6 +49,7 @@ RUN apt-get install -y \
     php7.3-intl \
     php7.3-imap \
     php7.3-imagick \
+    php7.3-xdebug \
     php-memcached
 RUN command -v php
 
