@@ -17,7 +17,6 @@
   * wget
   * PHP 7.4
     * mysql
-    * pgsql
     * memcached
     * sqlite
     * bz2
