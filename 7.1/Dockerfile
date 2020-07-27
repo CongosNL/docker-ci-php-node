@@ -69,7 +69,7 @@ RUN command -v node
 RUN command -v npm
 
 # Deployment packages
-RUN apt-get install -y lftp rclone
+RUN apt-get install -y lftp
 RUN curl -sL https://rclone.org/install.sh | bash
 
 # Other

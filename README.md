@@ -1,10 +1,10 @@
 # Docker image for Continuous Integration
 
 ## Available tags
-- [`4.0` (_Dockerfile_)](https://github.com/vyuldashev/docker-ci-php-node/blob/master/Dockerfile)
-- [`3.0` (_3.0/Dockerfile_)](https://github.com/vyuldashev/docker-ci-php-node/blob/master/3.0/Dockerfile)
-- [`2.0` (_2.0/Dockerfile_)](https://github.com/vyuldashev/docker-ci-php-node/blob/master/2.0/Dockerfile)
-- [`1.0` (_1.0/Dockerfile_)](https://github.com/vyuldashev/docker-ci-php-node/blob/master/1.0/Dockerfile)
+- [`7.4` (_7.4/Dockerfile_)](https://github.com/vyuldashev/docker-ci-php-node/blob/master/Dockerfile)
+- [`7.3` (_7.3/Dockerfile_)](https://github.com/vyuldashev/docker-ci-php-node/blob/master/3.0/Dockerfile)
+- [`7.2` (_7.2/Dockerfile_)](https://github.com/vyuldashev/docker-ci-php-node/blob/master/2.0/Dockerfile)
+- [`7.1` (_7.1/Dockerfile_)](https://github.com/vyuldashev/docker-ci-php-node/blob/master/1.0/Dockerfile)
 
 ## System information
   * Ubuntu 18.04
