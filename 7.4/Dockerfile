@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 ENV TZ=UTC
 
@@ -24,7 +24,6 @@ RUN apt-get install -y \
     build-essential \
     apt-utils \
     software-properties-common \
-    python-software-properties \
     nasm \
     libjpeg-dev \
     libpng-dev \
@@ -33,41 +32,44 @@ RUN apt-get install -y \
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 
 # PHP
-RUN LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && apt-get update && apt-get install -y php7.1
+RUN LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && apt-get update && apt-get install -y php7.4
 RUN apt-get install -y \
-    php7.1-curl \
-    php7.1-gd \
-    php7.1-dev \
-    php7.1-xml \
-    php7.1-bcmath \
-    php7.1-mysql \
-    php7.1-mbstring \
-    php7.1-zip \
-    php7.1-bz2 \
-    php7.1-sqlite \
-    php7.1-soap \
-    php7.1-json \
-    php7.1-intl \
-    php7.1-imap \
-    php7.1-imagick \
-    php7.1-xdebug \
+    php7.4-curl \
+    php7.4-gd \
+    php7.4-dev \
+    php7.4-xml \
+    php7.4-bcmath \
+    php7.4-mysql \
+    php7.4-mbstring \
+    php7.4-zip \
+    php7.4-bz2 \
+    php7.4-sqlite \
+    php7.4-soap \
+    php7.4-json \
+    php7.4-intl \
+    php7.4-imap \
+    php7.4-imagick \
+    php7.4-xdebug \
     php-memcached
 RUN command -v php
 
 # Composer
-RUN curl -sS https://getcomposer.org/installer | php
+RUN curl -sL https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer && \
     composer self-update --stable
+RUN composer global require hirak/prestissimo
 RUN command -v composer
 
 # Node.js
-RUN curl -sL https://deb.nodesource.com/setup_13.x -o nodesource_setup.sh
-RUN bash nodesource_setup.sh
-RUN apt-get install nodejs -y
-RUN npm install npm@6.13.0 -g
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get install -y nodejs
 RUN command -v node
 RUN command -v npm
+
+# Deployment packages
+RUN apt-get install -y lftp rclone
+RUN curl -sL https://rclone.org/install.sh | bash
 
 # Other
 RUN mkdir ~/.ssh

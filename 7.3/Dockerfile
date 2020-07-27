@@ -32,41 +32,44 @@ RUN apt-get install -y \
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 
 # PHP
-RUN LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && apt-get update && apt-get install -y php7.2
+RUN LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && apt-get update && apt-get install -y php7.3
 RUN apt-get install -y \
-    php7.2-curl \
-    php7.2-gd \
-    php7.2-dev \
-    php7.2-xml \
-    php7.2-bcmath \
-    php7.2-mysql \
-    php7.2-mbstring \
-    php7.2-zip \
-    php7.2-bz2 \
-    php7.2-sqlite \
-    php7.2-soap \
-    php7.2-json \
-    php7.2-intl \
-    php7.2-imap \
-    php7.2-imagick \
-    php7.2-xdebug \
+    php7.3-curl \
+    php7.3-gd \
+    php7.3-dev \
+    php7.3-xml \
+    php7.3-bcmath \
+    php7.3-mysql \
+    php7.3-mbstring \
+    php7.3-zip \
+    php7.3-bz2 \
+    php7.3-sqlite \
+    php7.3-soap \
+    php7.3-json \
+    php7.3-intl \
+    php7.3-imap \
+    php7.3-imagick \
+    php7.3-xdebug \
     php-memcached
 RUN command -v php
 
 # Composer
-RUN curl -sS https://getcomposer.org/installer | php
+RUN curl -sL https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer && \
     composer self-update --stable
+RUN composer global require hirak/prestissimo
 RUN command -v composer
 
 # Node.js
-RUN curl -sL https://deb.nodesource.com/setup_13.x -o nodesource_setup.sh
-RUN bash nodesource_setup.sh
-RUN apt-get install nodejs -y
-RUN npm install npm@6.13.0 -g
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get install -y nodejs
 RUN command -v node
 RUN command -v npm
+
+# Deployment packages
+RUN apt-get install -y lftp rclone
+RUN curl -sL https://rclone.org/install.sh | bash
 
 # Other
 RUN mkdir ~/.ssh
